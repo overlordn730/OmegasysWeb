@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OmegasysWeb.Models;
+using OmegasysWeb.Modelos.ViewModels;
 using System.Diagnostics;
 
-namespace OmegasysWeb.Controllers
+namespace OmegasysWeb.Areas.Inventario.Controllers
 {
+    [Area("Inventario")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

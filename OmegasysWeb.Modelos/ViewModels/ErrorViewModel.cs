@@ -1,4 +1,4 @@
-namespace OmegasysWeb.Models
+namespace OmegasysWeb.Modelos.ViewModels
 {
     public class ErrorViewModel
     {
