@@ -1,0 +1,19 @@
+﻿@using OmegasysWeb.Utilidades
+
+@if (TempData[DS.Exitoso] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.success('@TempData[DS.Exitoso]');
+    </script>
+}
+
+@if (TempData[DS.Fallido] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.error('@TempData[DS.Fallido]');
+    </script>
+}

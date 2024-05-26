@@ -8,5 +8,7 @@ namespace OmegasysWeb.Utilidades
 {
     public static class DS
     {
+        public const string Exitoso = "Proceso exitoso";
+        public const string Fallido = "Proceso fallido";
     }
 }
