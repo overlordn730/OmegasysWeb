@@ -20,7 +20,7 @@ namespace OmegasysWeb.AccesoDatos.Repositorio
 
         public void actualizar(Categoria categoria)
         {
-            var categoriaDB = _dbContext.Bodegas.FirstOrDefault(b => b.Id == categoria.Id);
+            var categoriaDB = _dbContext.Categorias.FirstOrDefault(b => b.Id == categoria.Id);
             if (categoriaDB != null)
             {
                 categoriaDB.Nombre = categoria.Nombre;

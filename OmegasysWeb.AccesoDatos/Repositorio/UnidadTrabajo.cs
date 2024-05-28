@@ -13,13 +13,14 @@ namespace OmegasysWeb.AccesoDatos.Repositorio
         private readonly ApplicationDbContext _dbContext;
         public IBodegaRepositorio Bodega {  get; private set; }
         public ICategoriaRepositorio Categoria {  get; private set; }
+        public IMarcaRepositorio Marca { get; private set; }
 
         public UnidadTrabajo(ApplicationDbContext dbContext)
         {
             this._dbContext = dbContext;
             Bodega = new BodegaRepositorio(_dbContext);
             Categoria = new CategoriaRepositorio(_dbContext);
-
+            Marca = new MarcaRepositorio(_dbContext);
         }
 
         public void Dispose()
