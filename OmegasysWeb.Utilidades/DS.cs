@@ -10,5 +10,6 @@ namespace OmegasysWeb.Utilidades
     {
         public const string Exitoso = "Proceso exitoso";
         public const string Fallido = "Proceso fallido";
+        public const string ImagenRuta = @"\imagenes\producto\";
     }
 }
