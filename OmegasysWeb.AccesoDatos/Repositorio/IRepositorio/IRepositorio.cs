@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OmegasysWeb.Modelos.Especificaciones;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -16,6 +17,13 @@ namespace OmegasysWeb.AccesoDatos.Repositorio.IRepositorio
             string incluirPropiedades = null,
             bool isTracking = true
             );
+
+        PagesList<T> ObtenerTodosPaginado(Parametros parametros, 
+                                          Expression<Func<T,bool>> filtro = null,
+                                          Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+                                          string incluirPropiedades = null,
+                                          bool isTracking = true);
+
         Task<T> obtenerPrimero(
             Expression<Func<T, bool>> filtro = null,
             string incluirPropiedades = null,

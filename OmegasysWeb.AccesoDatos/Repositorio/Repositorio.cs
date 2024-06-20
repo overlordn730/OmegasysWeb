@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OmegasysWeb.AccesoDatos.Data;
 using OmegasysWeb.AccesoDatos.Repositorio.IRepositorio;
+using OmegasysWeb.Modelos.Especificaciones;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,6 +78,33 @@ namespace OmegasysWeb.AccesoDatos.Repositorio
                 query = query.AsNoTracking();
             }
             return await query.ToListAsync();
+        }
+
+        public PagesList<T> ObtenerTodosPaginado(Parametros parametros, Expression<Func<T, bool>> filtro = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string incluirPropiedades = null, bool isTracking = true)
+        {
+            IQueryable<T> query = _dbSet;
+
+            if (filtro != null)
+            {
+                query = query.Where(filtro);
+            }
+            if (incluirPropiedades != null)
+            {
+                foreach (var propiedad in incluirPropiedades.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(propiedad);
+                }
+            }
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+            if (!isTracking)
+            {
+                query = query.AsNoTracking();
+            }
+
+            return PagesList<T>.ToPagesList(query, parametros.PageNumber, parametros.PageSize);
         }
 
         public void remover(T entidad)

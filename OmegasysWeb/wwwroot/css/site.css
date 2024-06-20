@@ -36,9 +36,21 @@ body {
     letter-spacing: 0.50rem;
 }
 
+.heading-secondary {
+    font-weight: 700;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 0.20rem;
+}
+
 
 @media only screen and (max-width: 51.25rem) {
     .heading-primary {
+        font-weight: 400;
+        letter-spacing: 0.1rem;
+    }
+
+    .heading-secondary {
         font-weight: 400;
         letter-spacing: 0.1rem;
     }
@@ -55,6 +67,11 @@ body {
         font-weight: 400;
         letter-spacing: 0.1rem;
     }
+    
+    .heading-secondary {
+        font-weight: 400;
+        letter-spacing: 0.1rem;
+    }
 
     .header {
         height: 13vh;
@@ -65,6 +82,11 @@ body {
 
 @media only screen and (max-width: 37.5rem) {
     .heading-primary {
+        font-weight: 400;
+        letter-spacing: 0.1rem;
+    }
+
+    .heading-secondary {
         font-weight: 400;
         letter-spacing: 0.1rem;
     }
@@ -84,6 +106,13 @@ body {
         letter-spacing: 0.1rem;
     }
 
+    .heading-secondary {
+        font-weight: 400;
+        font-size: 0.7rem;
+        padding-top: 0.5rem;
+        letter-spacing: 0.1rem;
+    }
+
     .header {
         height: 10vh;
         background: linear-gradient(to right, #000000e3, #ffffffea);
@@ -93,6 +122,13 @@ body {
 
 @media only screen and (max-width: 23.5rem) {
     .heading-primary {
+        font-weight: 400;
+        font-size: 0.7rem;
+        padding-top: 0.5rem;
+        letter-spacing: 0.1rem;
+    }
+
+    .heading-secondary {
         font-weight: 400;
         font-size: 0.7rem;
         padding-top: 0.5rem;
