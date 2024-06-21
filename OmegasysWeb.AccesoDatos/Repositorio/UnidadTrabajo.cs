@@ -15,6 +15,7 @@ namespace OmegasysWeb.AccesoDatos.Repositorio
         public ICategoriaRepositorio Categoria {  get; private set; }
         public IMarcaRepositorio Marca { get; private set; }
         public IProductoRepositorio Producto { get; private set; }
+        public IUsuarioAplicacionRepositorio UsuarioAplicacion { get; private set; }
 
         public UnidadTrabajo(ApplicationDbContext dbContext)
         {
@@ -23,6 +24,7 @@ namespace OmegasysWeb.AccesoDatos.Repositorio
             Categoria = new CategoriaRepositorio(_dbContext);
             Marca = new MarcaRepositorio(_dbContext);
             Producto = new ProductoRepositorio(_dbContext);
+            UsuarioAplicacion = new UsuarioAplicacionRepositorio(_dbContext);
         }
 
         public void Dispose()
