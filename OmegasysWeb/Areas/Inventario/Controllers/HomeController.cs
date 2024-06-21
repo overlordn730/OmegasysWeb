@@ -51,14 +51,12 @@ namespace OmegasysWeb.Areas.Inventario.Controllers
             ViewData["TotalRegistros"] = resultado.Metadata.TotalCount;
             ViewData["PageSize"] = resultado.Metadata.PageSize;
             ViewData["PageNumber"] = pageNumber;
-            ViewData["Anterior"] = "disable";
+            ViewData["Anterior"] = "disabled";
             ViewData["Siguiente"] = "";
 
             if (pageNumber > 1) ViewData["Anterior"] = "";
-            if (resultado.Metadata.TotalPages <= pageNumber)
-            {
-                ViewData["Siguiente"] = "disable";
-            }
+
+            if (resultado.Metadata.TotalPages <= pageNumber) ViewData["Siguiente"] = "disabled";
 
             return View(resultado);
         }
