@@ -6,7 +6,7 @@
     ViewData["Title"] = "Registrarse";
 }
 
-<div class="container border p-3">
+<div class="container border p-3 ">
     <h1>@ViewData["Title"]</h1>
 
     <div class="row">
@@ -50,15 +50,19 @@
                     <label asp-for="Input.PhoneNumber">Numero De Telefono</label>
                     <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
                 </div>
+
                 <div class="form-floating mb-2">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
                     <label asp-for="Input.Password">Password</label>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    <i class="bi bi-eye-slash" id="passwordInputToggleIcon" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;"></i>
                 </div>
+
                 <div class="form-floating mb-2">
-                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                    <label asp-for="Input.ConfirmPassword">Confirmar Password</label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                    <label asp-for="Input.ConfirmPassword">Confirm Password</label>
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    <i class="bi bi-eye-slash" id="confirmPasswordInputToggleIcon" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;"></i>
                 </div>
                 
                 @if (User.IsInRole(DS.Role_Admin)){
@@ -72,37 +76,12 @@
                     </div>
                 }
 
-                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Registrarse</button>
             </form>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-md-offset-2 d-flex justify-content-center align-items-center">
             <section>
-                <h3>Use another service to register.</h3>
-                <hr />
-                @{
-                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                    {
-                        <div>
-                            <p>
-                                There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                                about setting up this ASP.NET application to support logging in via external services</a>.
-                            </p>
-                        </div>
-                    }
-                    else
-                    {
-                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                            <div>
-                                <p>
-                                    @foreach (var provider in Model.ExternalLogins!)
-                                    {
-                                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                    }
-                                </p>
-                            </div>
-                        </form>
-                    }
-                }
+                <img src="~/imagenes/omegasys_icon.png" width="300px;" />
             </section>
         </div>
     </div>
@@ -111,4 +90,5 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/register.js"></script>
 }
