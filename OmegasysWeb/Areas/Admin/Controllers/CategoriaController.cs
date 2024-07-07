@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OmegasysWeb.AccesoDatos.Repositorio.IRepositorio;
 using OmegasysWeb.Modelos;
 using OmegasysWeb.Utilidades;
@@ -6,6 +7,7 @@ using OmegasysWeb.Utilidades;
 namespace OmegasysWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = DS.Role_Admin)]
     public class CategoriaController : Controller
     {
         private readonly IUnidadTrabajo _unidadTrabajo;

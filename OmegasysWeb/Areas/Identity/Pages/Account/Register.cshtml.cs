@@ -109,7 +109,7 @@ namespace OmegasysWeb.Areas.Identity.Pages.Account
             public string PhoneNumber { get; set; }
 
             [Required(ErrorMessage = CommunErrors.CampoObligatorio)]
-            public string Nombres { get; set; }            
+            public string Nombres { get; set; }
 
             [Required(ErrorMessage = CommunErrors.CampoObligatorio)]
             public string Apellidos { get; set; }
@@ -129,7 +129,7 @@ namespace OmegasysWeb.Areas.Identity.Pages.Account
                 ListaRol = _roleManager.Roles.Where(R => R.Name != DS.Role_Cliente)
                                              .Select(R => R.Name)
                                              .Select(L => new SelectListItem { Text = L, Value = L })
-                
+
             };
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
@@ -142,9 +142,9 @@ namespace OmegasysWeb.Areas.Identity.Pages.Account
             {
                 //var user = CreateUser();
 
-                var user = new UsuarioAplicacion 
-                { 
-                    UserName  = Input.Email,
+                var user = new UsuarioAplicacion
+                {
+                    UserName = Input.Email,
                     Email = Input.Email,
                     PhoneNumber = Input.PhoneNumber,
                     Nombres = Input.Nombres,
@@ -164,7 +164,7 @@ namespace OmegasysWeb.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    if(!await _roleManager.RoleExistsAsync(DS.Role_Admin))
+                    if (!await _roleManager.RoleExistsAsync(DS.Role_Admin))
                     {
                         await _roleManager.CreateAsync(new IdentityRole(DS.Role_Admin));
                     }
@@ -189,16 +189,16 @@ namespace OmegasysWeb.Areas.Identity.Pages.Account
                     }
 
                     var userId = await _userManager.GetUserIdAsync(user);
-                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    //code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    //var callbackUrl = Url.Page(
-                    //    "/Account/ConfirmEmail",
-                    //    pageHandler: null,
-                    //    values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                    //    protocol: Request.Scheme);
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                    var callbackUrl = Url.Page(
+                        "/Account/ConfirmEmail",
+                        pageHandler: null,
+                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                        protocol: Request.Scheme);
 
-                    //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                    //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await _emailSender.SendEmailAsync(Input.Email, "Confimación de Email",
+                        $"Por favor, confirma tu cuenta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>Haz click aquí</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
@@ -206,7 +206,7 @@ namespace OmegasysWeb.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        if (user.Role==null)
+                        if (user.Role == null)
                         {
                             await _signInManager.SignInAsync(user, isPersistent: false);
                             return LocalRedirect(returnUrl);
@@ -214,11 +214,19 @@ namespace OmegasysWeb.Areas.Identity.Pages.Account
                         else
                         {
                             // Administrador finaliza la creación del nuevo usuario
-                            return RedirectToAction("Index", "Usuario", new { Area = "Admin"});
+                            return RedirectToAction("Index", "Usuario", new { Area = "Admin" });
                         }
-
                     }
                 }
+
+                Input = new InputModel()
+                {
+                    ListaRol = _roleManager.Roles.Where(R => R.Name != DS.Role_Cliente)
+                                             .Select(R => R.Name)
+                                             .Select(L => new SelectListItem { Text = L, Value = L })
+
+                };
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
