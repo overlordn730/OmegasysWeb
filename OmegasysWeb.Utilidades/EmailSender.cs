@@ -27,13 +27,14 @@ namespace OmegasysWeb.Utilidades
             var request = new MailjetRequest
             {
                 Resource = Send.Resource,
-            }
+            }  
             .Property(Send.FromEmail, "nestorperezbest@gmail.com")
             .Property(Send.FromName, "Omega Shop")
             .Property(Send.Subject, subject)
             .Property(Send.TextPart, "")
             .Property(Send.HtmlPart, htmlMessage)
             .Property(Send.Recipients, new JArray {
+
             new JObject {
                  {"Email", email}
             }

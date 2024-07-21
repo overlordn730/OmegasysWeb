@@ -17,6 +17,10 @@ namespace OmegasysWeb.AccesoDatos.Data
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Producto> Productos { get; set; }
         public DbSet<UsuarioAplicacion> UsuarioAplicacion { get; set; }
+        public DbSet<BodegaProducto> BodegasProductos { get; set; }
+        public DbSet<Inventario> Inventarios { get; set; }
+        public DbSet<InventarioDetalle> InventarioDetalles { get; set; }
+        public DbSet<KardexInventario> KardexInventarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
