@@ -39,8 +39,12 @@
     </div>
 
     <div class="row mb-2">
-        <div class="form-group col-md-3 mt-2">
+        <div class="form-group col-md-6 mt-2">
             <a asp-action="KardexProducto" class="btn btn-secondary">Nueva Cosulta</a>
+            <a asp-action="ImprimirKardex" asp-route-fechaInicio="@Model.FechaInicio" asp-route-fechaFinal ="@Model.FechaFinal" asp-route-productoId = "@Model.Producto.Id" class="btn btn-secondary">
+                <i class="bi bi-printer-fill"></i>
+                Imprimir
+            </a>
             <a asp-action="Index" class="btn btn-secondary">Salir</a>
         </div>
     </div>
