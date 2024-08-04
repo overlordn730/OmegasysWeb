@@ -20,6 +20,7 @@ namespace OmegasysWeb.AccesoDatos.Repositorio
         public IInventarioRepositorio Inventario { get; private set; }
         public IInventarioDetalleRepositorio InventarioDetalle { get; private set; }
         public IKardexInventarioRepositorio KardexInventario { get; private set; }
+        public ICompaniaRepositorio Compania { get; private set; }
 
         public UnidadTrabajo(ApplicationDbContext dbContext)
         {
@@ -29,10 +30,11 @@ namespace OmegasysWeb.AccesoDatos.Repositorio
             Marca = new MarcaRepositorio(_dbContext);
             Producto = new ProductoRepositorio(_dbContext);
             UsuarioAplicacion = new UsuarioAplicacionRepositorio(_dbContext);
-            BodegaProducto = new BodegaProductoRepositorio(dbContext);
-            Inventario = new InventarioRepositorio(dbContext);
-            InventarioDetalle = new InventarioDetalleRepositorio(dbContext);
-            KardexInventario = new KardexInventarioRepositorio(dbContext);
+            BodegaProducto = new BodegaProductoRepositorio(_dbContext);
+            Inventario = new InventarioRepositorio(_dbContext);
+            InventarioDetalle = new InventarioDetalleRepositorio(_dbContext);
+            KardexInventario = new KardexInventarioRepositorio(_dbContext);
+            Compania = new CompaniaRepositorio(_dbContext);
         }
 
         public void Dispose()
