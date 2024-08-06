@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OmegasysWeb.AccesoDatos.Data;
 
@@ -11,9 +12,10 @@ using OmegasysWeb.AccesoDatos.Data;
 namespace OmegasysWeb.AccesoDatos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240806010337_ModeloOrden")]
+    partial class ModeloOrden
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -601,35 +603,6 @@ namespace OmegasysWeb.AccesoDatos.Migrations
                     b.ToTable("Ordenes");
                 });
 
-            modelBuilder.Entity("OmegasysWeb.Modelos.OrdenDetalle", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Cantidad")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrdenId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Precio")
-                        .HasColumnType("float");
-
-                    b.Property<int>("ProductoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrdenId");
-
-                    b.HasIndex("ProductoId");
-
-                    b.ToTable("OrdenDetalles");
-                });
-
             modelBuilder.Entity("OmegasysWeb.Modelos.Producto", b =>
                 {
                     b.Property<int>("Id")
@@ -892,25 +865,6 @@ namespace OmegasysWeb.AccesoDatos.Migrations
                         .IsRequired();
 
                     b.Navigation("UsuarioAplicacion");
-                });
-
-            modelBuilder.Entity("OmegasysWeb.Modelos.OrdenDetalle", b =>
-                {
-                    b.HasOne("OmegasysWeb.Modelos.Orden", "Orden")
-                        .WithMany()
-                        .HasForeignKey("OrdenId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("OmegasysWeb.Modelos.Producto", "Producto")
-                        .WithMany()
-                        .HasForeignKey("ProductoId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Orden");
-
-                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("OmegasysWeb.Modelos.Producto", b =>

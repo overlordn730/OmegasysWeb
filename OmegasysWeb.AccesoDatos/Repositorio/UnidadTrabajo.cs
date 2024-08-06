@@ -21,6 +21,9 @@ namespace OmegasysWeb.AccesoDatos.Repositorio
         public IInventarioDetalleRepositorio InventarioDetalle { get; private set; }
         public IKardexInventarioRepositorio KardexInventario { get; private set; }
         public ICompaniaRepositorio Compania { get; private set; }
+        public ICarroCompraRepositorio CarroCompra { get; private set; }
+        public IOrdenRepositorio Orden { get; private set; }
+        public IOrdenDetalleRepositorio OrdenDetalle { get; private set; }
 
         public UnidadTrabajo(ApplicationDbContext dbContext)
         {
@@ -35,6 +38,9 @@ namespace OmegasysWeb.AccesoDatos.Repositorio
             InventarioDetalle = new InventarioDetalleRepositorio(_dbContext);
             KardexInventario = new KardexInventarioRepositorio(_dbContext);
             Compania = new CompaniaRepositorio(_dbContext);
+            CarroCompra = new CarroCompraRepositorio(_dbContext);
+            Orden = new OrdenRepositorio(_dbContext);
+            OrdenDetalle = new OrdenDetalleRepositorio(_dbContext);
         }
 
         public void Dispose()
