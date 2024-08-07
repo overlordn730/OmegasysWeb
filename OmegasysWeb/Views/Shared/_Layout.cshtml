@@ -1,4 +1,7 @@
 ﻿@using OmegasysWeb.Utilidades
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,6 +98,25 @@
                                         </a>
                                     </li>
                                 </ul>
+                            </li>
+                        }
+
+                        @if(httpContextAccessor.HttpContext.Session.GetInt32(DS.ssCarroCompra) != null){
+                            <li>
+                                <a asp-area="Inventario" asp-controller="Carro" asp-action="Index" class="nav-link">
+                                    @{
+                                        var numeroProductos = httpContextAccessor.HttpContext.Session.GetInt32(DS.ssCarroCompra);
+                                    }
+                                    <i class="bi bi-cart3 text-primary">&nbsp;(@numeroProductos)</i>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#" class="nav-link">
+                                    <i class="bi bi-cart3 text-primary">&nbsp;(0)</i>
+                                </a>
                             </li>
                         }
 
