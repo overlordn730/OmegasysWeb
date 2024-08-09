@@ -16,5 +16,9 @@ namespace OmegasysWeb.Modelos.ViewModels
         public int Stock { get; set; }
 
         public CarroCompra CarroCompra { get; set; }
+
+        public IEnumerable<CarroCompra> CarroCompraLista { get; set; }
+
+        public Orden Orden { get; set; }
     }
 }
