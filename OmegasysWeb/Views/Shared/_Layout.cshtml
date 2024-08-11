@@ -101,6 +101,10 @@
                             </li>
                         }
 
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Orden" asp-action="">Ordenes</a>
+                        </li>
+
                         @if(httpContextAccessor.HttpContext.Session.GetInt32(DS.ssCarroCompra) != null){
                             <li>
                                 <a asp-area="Inventario" asp-controller="Carro" asp-action="Index" class="nav-link">
