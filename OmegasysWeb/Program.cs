@@ -5,6 +5,7 @@ using OmegasysWeb.AccesoDatos.Data;
 using OmegasysWeb.AccesoDatos.Repositorio;
 using OmegasysWeb.AccesoDatos.Repositorio.IRepositorio;
 using OmegasysWeb.Utilidades;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +43,8 @@ builder.Services.AddScoped<IUnidadTrabajo, UnidadTrabajo>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -64,7 +67,10 @@ else
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
+
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 
 app.UseRouting();
 

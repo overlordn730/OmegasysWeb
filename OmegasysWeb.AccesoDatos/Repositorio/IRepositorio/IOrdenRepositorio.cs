@@ -10,5 +10,10 @@ namespace OmegasysWeb.AccesoDatos.Repositorio.IRepositorio
     public interface IOrdenRepositorio : IRepositorio<Orden>
     {
         void actualizar(Orden orden);
+
+        void ActualizarEstado(int id, string ordenEstado, string pagoEstado);
+
+        void ActualizarPagoStripeId(int id, string sessionId, string transaccionId);
+
     }
 }

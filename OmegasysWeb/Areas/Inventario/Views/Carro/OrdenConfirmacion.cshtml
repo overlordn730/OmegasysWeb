@@ -1,0 +1,14 @@
+﻿@model int
+
+<div class="d-flex justify-content-center">
+    <div class="text-center" style="color: #8c1aff;">
+        <h1 class="mb-4">Orden Procesada Correctamente</h1>
+        <img src="~/imagenes/confirmacion.jpg" width="50%" class="mb-4" />
+        <p class="mb-5">
+            Gracias Por tu Orden!<br>
+            Hemos recibido tu Orden y Nosotros te enviaremos un email pronto!<br>
+            Tu numero de Orden es: @Model
+        </p>
+        <a asp-area="Inventario" asp-controller="Home" asp-action="Index" class="btn btn-success">Salir</a>
+    </div>
+</div>

@@ -22,5 +22,34 @@ namespace OmegasysWeb.AccesoDatos.Repositorio
         {
             _dbContext.Update(orden);
         }
+
+        public void ActualizarEstado(int id, string ordenEstado, string pagoEstado)
+        {
+            var ordenDB = _dbContext.Ordenes.FirstOrDefault(o => o.Id == id);
+
+            if (ordenDB != null) {
+                ordenDB.EstadoOrden = ordenEstado;
+                ordenDB.EstadoPago = pagoEstado;
+            }
+        }
+
+        public void ActualizarPagoStripeId(int id, string sessionId, string transaccionId)
+        {
+            var ordenDB = _dbContext.Ordenes.FirstOrDefault(o => o.Id == id);
+
+            if (ordenDB != null)
+            {
+                if (!String.IsNullOrEmpty(sessionId))
+                {
+                    ordenDB.SessionId = sessionId;
+                }
+
+                if (!String.IsNullOrEmpty(transaccionId))
+                {
+                    ordenDB.TransaccionId = transaccionId;
+                    ordenDB.FechaPago = DateTime.Now;
+                }
+            }
+        }
     }
 }

@@ -79,7 +79,7 @@
             let stock = document.getElementById("stockId").value;
             let cantidad = document.getElementById("cantidadId").value;
             if (cantidad.toString() == '' || cantidad < 1 || parseInt(cantidad) > parseInt(stock)) {
-                swal("Error", "Seleccione una Cantidad correcta", "error");
+                swal("Error", "Favor seleccione una cantidad correcta", "error");
                 return false;
             }
         });
